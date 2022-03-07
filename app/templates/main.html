@@ -1,0 +1,47 @@
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}/css/main.css">
+    <style>
+        @font-face {
+            src : url("{{ STATIC_URL }}/font/BMJUA_ttf.ttf");
+            font-family: "jua"
+        }
+    </style>
+    <title>버거킹 설문조사</title>
+</head>
+
+<body>
+    <!-- 검색창 -->
+    <div class="case">
+        <div class="input_wrap">
+            <input type="text" class="search_input" placeholder="검색어를 입력하세요.">
+        </div>
+    </div>
+    <div class="suggestions suggestions_pannel search_result"></div>
+
+    <div class="background">
+        <div class="window">
+            <div class="popup">
+                <div class="case">
+                    <button id="close" class="close">팝업닫기</button>
+                </div>
+                <div class="contents"></div>
+                <iframe name="iframe1" class="iframe1" frameborder=0 framespacing=0 marginheight=0 marginwidth=0
+                    scrolling=no vspace=0>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ STATIC_URL }}/js/main.js"></script>
+
+</body>
+
+</html>

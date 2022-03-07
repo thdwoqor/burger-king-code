@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}/css/loading.css">
+    <style>
+        @font-face {
+            src : url("{{ STATIC_URL }}/font/BMJUA_ttf.ttf");
+            font-family: "jua"
+        }
+    </style>
+</head>
+
+<body>
+    <div class="case">
+        <div class="input_wrap">
+            <div class="loading-container">
+                <div class="loading"></div>
+                <div id="loading-text">loading</div>
+            </div>
+            <div class="contents">
+                <strong>혜택 확인</strong>
+                <hr class="connectHeaderRule">
+                </hr>
+                <p>
+                    설문조사를 완료해 주셔서 감사합니다.
+                    BURGER KING®은 귀하를 다시 저희 식당을 방문하도록 초대하고자 합니다.
+                    다음 방문 시 티켓에 표시한 주문을 제시하는 것을 잊지 마십시오.
+                    티켓에 다음 코드를 기재해야 합니다.
+                </p>
+                <strong class="valcode"></strong>
+                <p>참여해 주셔서 감사합니다.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = async function () {
+            // fetch("http://127.0.0.1:8000/result/{{name}}/?CN1={{request['CN1']}}&CN2={{request['CN2']}}&CN3={{request['CN3']}}&CN4={{request['CN4']}}&CN5={{request['CN5']}}&CN6={{request['CN6']}}"
+            fetch("/result/{{name}}"
+                , {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        CN1: "{{request['CN1']}}",
+                        CN2: "{{request['CN2']}}",
+                        CN3: "{{request['CN3']}}",
+                        CN4: "{{request['CN4']}}",
+                        CN5: "{{request['CN5']}}",
+                        CN6: "{{request['CN6']}}",
+                    }),
+                })
+                .then((response) => response.json())
+                .then(data => {
+                    document.getElementsByClassName('contents')[0].style.display = "block";
+                    document.getElementsByClassName('loading-container')[0].style.display = "none";
+                    document.getElementsByClassName('valcode')[0].innerHTML = "확인 코드: " + data
+                    console.log(data)
+                }).catch(error => console.log(error));
+        }
+    </script>
+</body>
+
+</html>
